@@ -1,0 +1,21 @@
+# Built-in macros
+# $@ : the name of the file to be ``made''
+# $* : the shared prefix of the target and dependent - only for suffix rules
+# $< : the name of the related file that caused the action (the precursor to the target) - this is only for suffix rules
+# $? : the set of dependent names that are younger than the target
+# $$ : escapes macro substitution, returns a single ``$''.
+# $^ : 
+
+# pattern rule
+OBJS = test1_d.o test2_d.o test3_d.o test4_d.o
+
+test: $(OBJS)
+	gcc -o $@ $(OBJS)
+
+# pattern rule
+# % means all
+%_d.o: %.c
+	gcc -c -g $< -o $@
+
+clean:
+	rm $(OBJS) test

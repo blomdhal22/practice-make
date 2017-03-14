@@ -1,0 +1,12 @@
+# create executable file
+test: test1.o test2.o test3.o
+	gcc -o test test1.o test2.o test3.o
+
+# fake target
+clean:
+	rm test1.o test2.o test3.o
+
+# create dependency
+dep:
+	gccmakedep test1.c test2.c test3.c
+
